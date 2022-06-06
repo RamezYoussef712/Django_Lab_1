@@ -1,0 +1,23 @@
+{% extends 'general_templates/base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block body_content %}
+
+<div class="container mt-5 col-8">
+    <div class="card border-dark mb-3">
+        <div class="card-header">Task Info</div>
+        <div class="card-body text-dark">
+        <h5 class="card-title fs-6 fw-bold">Name:</h5>
+        <p class="card-text">{{ task.name }}</p>
+        <h5 class="card-title fs-6 fw-bold">Description:</h5>
+        <p class="card-text">{{ task.description }}</p>
+        <h5 class="card-title fs-6 fw-bold">Status:</h5>
+        {% if task.is_done == False %}
+            <p class="card-text">Pending</p>
+        {% else %}
+            <p class="card-text">Finished</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

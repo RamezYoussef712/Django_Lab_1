@@ -1,0 +1,46 @@
+{% extends 'general_templates/base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block body_content %}
+
+<div class="mt-5 ">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        {% for task in list %}
+        <tr>
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.name|title }}</td>
+            <td>{{ task.description }}</td>
+            {% if task.is_done == False %}
+            <td>Pending...</td>
+            {% else %}
+            <td>Finished &#10004;</td>
+            {% endif %}
+            <td>
+                {% if task.is_done == True %}
+                <a class="btn btn-success disabled" href="{% url 'todo:task_finished' task.id %}">Mark Done</a>
+                {% else %}
+                <a class="btn btn-success" href="{% url 'todo:task_finished' task.id %}">Mark Done</a>
+                {% endif %}
+                <a class="btn btn-primary" href="{% url 'todo:task_details' task.id %}">View</a>
+                <a class="btn btn-secondary" href="{% url 'todo:task_edit' task.id %}">Edit</a>
+                {% if task.is_done == False %}
+                <a class="btn btn-danger disabled">Delete</a>
+                {% else %}
+                <a class="btn btn-danger" href="{% url 'todo:task_delete' task.id %}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

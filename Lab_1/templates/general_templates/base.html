@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-md d-flex justify-content-start">
+        <span class="navbar-brand mb-0 h1 fs-1 pe-3">ITI Todo List</span>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a type="button" class="btn btn-primary" href="{% url 'todo:index' %}">All tasks</a>
+            <a type="button" class="btn btn-success" href="{% url 'todo:task_add' %}">Add Task +</a>
+        </div>
+<!--        <a class="nav-link btn-sm btn-light m-3" aria-current="page" href="{% url 'todo:index' %}">All tasks</a>-->
+<!--        <a class="nav-link btn-sm btn-success text-white fs-6" aria-current="page" href="{% url 'todo:task_add' %}">Add Task +</a>-->
+    </div>
+</nav>
+<div class="container">
+    {% block body_content %}
+
+    {% endblock %}
+</div>
+<script src="{% static 'js/boostrap.bundle.min.js' %}"></script>
+</body>
+</html>
