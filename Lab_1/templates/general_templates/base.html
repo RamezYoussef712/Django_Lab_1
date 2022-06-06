@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +16,12 @@
             <a type="button" class="btn btn-primary" href="{% url 'todo:index' %}">All tasks</a>
             <a type="button" class="btn btn-success" href="{% url 'todo:task_add' %}">Add Task +</a>
         </div>
-<!--        <a class="nav-link btn-sm btn-light m-3" aria-current="page" href="{% url 'todo:index' %}">All tasks</a>-->
-<!--        <a class="nav-link btn-sm btn-success text-white fs-6" aria-current="page" href="{% url 'todo:task_add' %}">Add Task +</a>-->
     </div>
 </nav>
 <div class="container">
+{% weather_template_tag as weather %}
+    <h3>Weather API template:</h3>
+    {{ weather }}
     {% block body_content %}
 
     {% endblock %}
